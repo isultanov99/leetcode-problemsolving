@@ -122,7 +122,7 @@ words[i] consists of lowercase English letters.
 <details>
 <summary><a href="./uniquemorse.py">uniquemorse.py</a></summary>
 
-````
+```
 class Solution:
 	def morsify(self, s: str):
 		__eng_to_morse = {
