@@ -10,6 +10,10 @@
 	2.1. [Description](#um-description) \
 	2.2. [Solution](#um-solution) \
 	2.3. [Submission Details](#um-subdetails)
+2. [345. Reverse Vowels of a String](#reverse-vowels) \
+	2.1. [Description](#rv-description) \
+	2.2. [Solution](#rv-solution) \
+	2.3. [Submission Details](#rv-subdetails)
 
 <h2 id="sum-of-unique-elements" >1748. Sum of Unique Elements</h2>
 <h3 id="soue-description" >Description</h3>
@@ -53,7 +57,7 @@ Constraints:
 <details>
 <summary><a href="sumofunique.py">sumofunique.py</a></summary>
 
-```
+```python
 class Solution:
 	def sumOfUnique(self, nums: List[int]) -> int:
 		d = {x:nums.count(x) for x in nums}
@@ -122,7 +126,7 @@ words[i] consists of lowercase English letters.
 <details>
 <summary><a href="./uniquemorse.py">uniquemorse.py</a></summary>
 
-```
+```python
 class Solution:
 	def morsify(self, s: str):
 		__eng_to_morse = {
@@ -151,3 +155,63 @@ class Solution:
 - Status: **Accepted**
 - Runtime: **28 ms** (faster than 97.11% of submissions)
 - Memory Usage: **14.3 MB** (less than 62.42% of submissions)
+
+---
+
+<h2 id="reverse-vowels" >345. Reverse Vowels of a String</h2>
+<h3 id="rv-description" >Description</h3>
+
+Given a string `s`, reverse only all the vowels in the string and return it. \
+The vowels are `'a'`, `'e'`, `'i'`, `'o'`, and `'u'`, and they can appear in both cases.
+
+Example 1:
+
+```
+Input: s = "hello"
+Output: "holle"
+```
+
+Example 2:
+
+```
+Input: s = "leetcode"
+Output: "leotcede"
+```
+
+Constraints:
+
+```
+1 <= s.length <= 3 * 10^5
+s consist of printable ASCII characters.
+```
+
+<h3 id="rv-solution" >Solution</h3>
+
+<details>
+<summary><a href="./reversevowels.py">reversevowels.py</a></summary>
+
+```python
+import re
+
+class Solution:
+	def reverseVowels(self, s: str) -> str:
+		ll = [[m.group() for m in re.finditer(r"[EAOUIeaoui]", s)],
+			[m.start(0) for m in re.finditer(r"[EAOUIeaoui]", s)]]
+		sl = list(s)
+
+		for i in range(len(ll[1])):
+			sl[ll[1][i]] = ll[0][len(ll[1])-i-1]
+
+		return("".join(sl))
+```
+
+</details>
+
+<h3 id="rv-subdetails" >Submission Details</h3>
+
+- **480 / 480** test cases passed.
+- Status: **Accepted**
+- Runtime: **52 ms** (faster than 77.04% of submissions)
+- Memory Usage: **15 MB** (less than 88.97% of submissions)
+
+---
